@@ -11,6 +11,8 @@
 
   <script src="node_modules/axios/dist/axios.min.js">
   </script>
+<script src="node_modules/axios/dist/axios.min.js"> 
+  </script>
   <script src="dictionary.json" type="text/javascript">
   </script>
   <style media="screen">
@@ -131,30 +133,43 @@
         searchTerm: '',
         results: '',
         wordList: [],
-        url: "http://localhost:5000/getWord"
+        url: "http://localhost:5000/getWord",
+        dataFile:''
       },
-      
+      mounted: function(){
+        axios.get('./dictionary.json').then(data => {
+        localStorage.setItem("words", data.data);
+        this.dataFile = data.data
+        })
+      }, 
       methods: {
         submit: function(){
           this.searchTerm = this.searchTerm.toUpperCase();
-          axios.get(this.url, {
-              params: 
-            {
-              searchTerm: this.searchTerm
-            }
-          })
-            .then(response => { 
-              this.results = response.data
-                if (this.results) {
-                  this.wordList.push(this.searchTerm)
-                  localStorage.setItem("wordList", this.wordList);
-                }
-           })
+          this.results = this.dataFile[this.searchTerm]
+          if(this.results) return this.wordList.push(this.searchTerm)
+          
+
+          // axios.get(this.url, {
+          //     params: 
+          //   {
+          //     searchTerm: this.searchTerm
+          //   }
+          // })
+          //   .then(response => { 
+          //     this.results = response.data
+          //       if (this.results) {
+          //         this.wordList.push(this.searchTerm)
+          //         localStorage.setItem("wordList", this.wordList);
+          //       }
+          //  })
         },
         searchHistory: function (item) {
-          localStorage.setItem("wordList", this.wordList);
-          var searchTermArray = localStorage.getItem("wordList") 
-          console.log("Its here", this.searchTerm)
+            this.results = this.dataFile[this.item]
+
+          
+          // localStorage.setItem("wordList", this.wordList);
+          // var searchTermArray = localStorage.getItem("wordList") 
+          // console.log("Its here", this.searchTerm)
         }
       }
     })
