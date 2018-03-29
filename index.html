@@ -114,10 +114,10 @@
       <div class="pastWords">
         <h1>Past Searched Words</h1>
 
-        <ul v-for="item in wordList">
+        <ul v-for="item in history">
           <li @click="searchHistory(item)">
             <h2>
-              <a href="">{{item}}</a>
+              <a href="#">{{item}}</a>
             </h2>
           </li>
         </ul>
@@ -133,9 +133,16 @@
         searchTerm: '',
         results: '',
         wordList: [],
+        history: JSON.parse(localStorage.getItem('historyList') || '[]'),
         url: "http://localhost:5000/getWord",
         dataFile:''
       },
+      // computed:{
+      //   wordListFunc: function(){
+      //       this.wordList = localStorage.getItem(this.searchTerm)
+      //       return this.wordList;
+      //   }
+      // },
       mounted: function(){
         axios.get('./dictionary.json').then(data => {
         localStorage.setItem("words", data.data);
@@ -146,7 +153,14 @@
         submit: function(){
           this.searchTerm = this.searchTerm.toUpperCase();
           this.results = this.dataFile[this.searchTerm]
-          if(this.results) return this.wordList.push(this.searchTerm)
+          this.history = JSON.parse(localStorage.getItem('historyList') || '[]')
+          // history.push(this.searchTerm)
+          if(this.results) {
+          this.history.push(this.searchTerm)
+            localStorage.setItem('historyList', JSON.stringify(this.history))
+          }
+          
+          // return localStorage.setItem('historyList', [this.searchTerm])
           
 
           // axios.get(this.url, {
@@ -164,7 +178,22 @@
           //  })
         },
         searchHistory: function (item) {
-            this.results = this.dataFile[this.item]
+            // this.results = this.dataFile[this.item]
+            if(this.history.includes(item)){
+                this.searchTerm = item
+                this.results = this.dataFile[item]
+              console.log("correct item", item, "search term", this.searchTerm, "this is result", this.results)
+            }
+            else{
+                console.log("inccorrect item", item, "search term", this.searchTerm, "this is result", this.results)
+
+          
+            }
+            // localStorage.getItem(item)
+
+      // console.log("this is my item", localStorage.getItem(item))
+
+
 
           
           // localStorage.setItem("wordList", this.wordList);
