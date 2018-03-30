@@ -6,14 +6,22 @@
   <!-- <script src="https://unpkg.com/vue"></script> -->
 
   <script src="node_modules/vue/dist/vue.js">
+
+
   </script>
   <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
 
   <script src="node_modules/axios/dist/axios.min.js">
+
+
   </script>
-<script src="node_modules/axios/dist/axios.min.js"> 
+  <script src="node_modules/axios/dist/axios.min.js">
+
+
   </script>
   <script src="dictionary.json" type="text/javascript">
+
+
   </script>
   <style media="screen">
     body {
@@ -38,7 +46,6 @@
       color: rgb(7, 2, 68);
       height: 200px;
       width: 75%;
-      margin-top: 10%;
       background-color: #333;
       border-radius: 5px;
       margin: 0 auto;
@@ -88,29 +95,43 @@
       list-style: none;
       cursor: pointer;
     }
-  
+
+    @media only screen and (max-width: 850px) {
+      body {
+        background-color: lightblue;
+
+      }
+      .textfield {
+        margin-left: 30%;
+
+      }
+
+    }
+
   </style>
 </head>
-<body >
+
+<body>
   <div class="title">
     <h1>Simple Dictionary</h1>
   </div>
 
-    <div>
-      <img class="logo" src="vuejs-logo.png" alt="Vue logo">
-    </div>
+  <div>
+    <img class="logo" src="vuejs-logo.png" alt="Vue logo">
+  </div>
 
   <div id="app">
 
 
     <div>
-        <input type="text" placeholder="Enter a word and hit return" class="textfield" v-model="searchTerm" @keyup.enter="submit"/>
-      
+      <input type="text" placeholder="Enter a word and hit return" class="textfield" v-model="searchTerm" @keyup.enter="submit"
+      />
+
       <div class="resultsBox">
         <h2 v-if="results">{{results}}</h2>
         <h2 v-else>Please enter a word in the search field</h2>
       </div>
-      
+
       <div class="pastWords">
         <h1>Past Searched Words</h1>
 
@@ -124,7 +145,7 @@
 
       </div>
     </div>
-</div>
+  </div>
   <script>
     var app = new Vue({
       el: '#app',
@@ -135,73 +156,44 @@
         wordList: [],
         history: JSON.parse(localStorage.getItem('historyList') || '[]'),
         url: "http://localhost:5000/getWord",
-        dataFile:''
+        dataFile: ''
       },
-      // computed:{
-      //   wordListFunc: function(){
-      //       this.wordList = localStorage.getItem(this.searchTerm)
-      //       return this.wordList;
-      //   }
-      // },
-      mounted: function(){
+      mounted: function () {
         axios.get('./dictionary.json').then(data => {
-        localStorage.setItem("words", data.data);
-        this.dataFile = data.data
+          localStorage.setItem("words", data.data);
+          this.dataFile = data.data
         })
-      }, 
+      },
       methods: {
-        submit: function(){
+        submit: function () {
           this.searchTerm = this.searchTerm.toUpperCase();
           this.results = this.dataFile[this.searchTerm]
+          if(!this.results){
+            this.results = "We could not find your word, please try another"
+            return;
+          }
           this.history = JSON.parse(localStorage.getItem('historyList') || '[]')
           // history.push(this.searchTerm)
-          if(this.results) {
-          this.history.push(this.searchTerm)
+          if (this.results) {
+            this.history.push(this.searchTerm)
             localStorage.setItem('historyList', JSON.stringify(this.history))
           }
-          
-          // return localStorage.setItem('historyList', [this.searchTerm])
-          
-
-          // axios.get(this.url, {
-          //     params: 
-          //   {
-          //     searchTerm: this.searchTerm
-          //   }
-          // })
-          //   .then(response => { 
-          //     this.results = response.data
-          //       if (this.results) {
-          //         this.wordList.push(this.searchTerm)
-          //         localStorage.setItem("wordList", this.wordList);
-          //       }
-          //  })
         },
         searchHistory: function (item) {
-            // this.results = this.dataFile[this.item]
-            if(this.history.includes(item)){
-                this.searchTerm = item
-                this.results = this.dataFile[item]
-              console.log("correct item", item, "search term", this.searchTerm, "this is result", this.results)
-            }
-            else{
-                console.log("inccorrect item", item, "search term", this.searchTerm, "this is result", this.results)
-
-          
-            }
-            // localStorage.getItem(item)
-
-      // console.log("this is my item", localStorage.getItem(item))
+          if (this.history.includes(item)) {
+            this.searchTerm = item
+            this.results = this.dataFile[item]
+            console.log("correct item", item, "search term", this.searchTerm, "this is result", this.results)
+          } else {
+            console.log("inccorrect item", item, "search term", this.searchTerm, "this is result", this.results)
 
 
-
-          
-          // localStorage.setItem("wordList", this.wordList);
-          // var searchTermArray = localStorage.getItem("wordList") 
-          // console.log("Its here", this.searchTerm)
+          }
         }
       }
     })
+
   </script>
 </body>
+
 </html>
