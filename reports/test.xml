@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="1"
+            failures="0"
+            tests="4">
+
+  <testsuite name="test"
+    errors="1" failures="0" hostname="" id="" package="test" skipped="3"
+    tests="4" time="0.005000" timestamp="Fri, 30 Mar 2018 21:27:31 GMT">
+  
+    <testcase name="I can search for a word" classname="test" time="0.005000" assertions="0">
+    </testcase>
+  
+
+  
+    <system-err>
+        Error while running [Test / I can search for a word]:
+
+  ReferenceError: pause is not defined
+    at Object.I can search for a word (/Users/jpierrelouis/Desktop/Learn/dictionary_app/dictionary-app/tests/test.js:20:7)
+    at Module.call (/Users/jpierrelouis/Desktop/Learn/dictionary_app/dictionary-app/node_modules/nightwatch/lib/runner/module.js:62:34)
+    at /Users/jpierrelouis/Desktop/Learn/dictionary_app/dictionary-app/node_modules/nightwatch/lib/runner/testcase.js:70:29
+    at _fulfilled (/Users/jpierrelouis/Desktop/Learn/dictionary_app/dictionary-app/node_modules/q/q.js:834:54)
+    at self.promiseDispatch.done (/Users/jpierrelouis/Desktop/Learn/dictionary_app/dictionary-app/node_modules/q/q.js:863:30)
+    at Promise.promise.promiseDispatch (/Users/jpierrelouis/Desktop/Learn/dictionary_app/dictionary-app/node_modules/q/q.js:796:13)
+    at /Users/jpierrelouis/Desktop/Learn/dictionary_app/dictionary-app/node_modules/q/q.js:556:49
+    at runSingle (/Users/jpierrelouis/Desktop/Learn/dictionary_app/dictionary-app/node_modules/q/q.js:137:13)
+    at flush (/Users/jpierrelouis/Desktop/Learn/dictionary_app/dictionary-app/node_modules/q/q.js:125:13)
+    at _combinedTickCallback (internal/process/next_tick.js:73:7)
+    </system-err>
+  
+
+  
+    
+    <testcase
+      name="I can search for word that doesnt exist" classname="test">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="I can search for another word" classname="test">
+      <skipped />
+    </testcase>
+    
+    <testcase
+      name="I can search history for my word" classname="test">
+      <skipped />
+    </testcase>
+    
+  
+  </testsuite>
+</testsuites>
