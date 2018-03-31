@@ -1,4 +1,4 @@
-var config = require('../nightwatch.conf.BASIC.js');
+var config = require("../nightwatch.conf.BASIC.js");
 var app_url = "http://localhost:5000/";
 // exports.command = function(message) {
 //   return this.perform(function(browser, done) {
@@ -19,7 +19,10 @@ module.exports = {
     browser.url(app_url).setValue("input", "wordThatDoesntExist");
     browser
       .keys([browser.Keys.RETURN])
-      .assert.containsText("div h2", "We could not find your word, please try another")
+      .assert.containsText(
+        "div h2",
+        "We could not find your word, please try another"
+      )
       .elements("css selector", "ul li", result => {
         const numElements = result.value.length;
         browser.assert.equal(numElements, 0);
@@ -27,9 +30,7 @@ module.exports = {
       .end();
   },
   "I can search for another word": function(browser) {
-    browser
-      .url(app_url)
-      .setValue("input", "trophied");
+    browser.url(app_url).setValue("input", "trophied");
     browser
       .keys([browser.Keys.RETURN])
       .assert.containsText("div h2", "Adorned with trophies")

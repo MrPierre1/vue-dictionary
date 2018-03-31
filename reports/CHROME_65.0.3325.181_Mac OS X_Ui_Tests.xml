@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites errors="0"
+            failures="0"
+            tests="4">
+
+  <testsuite name="Ui_Tests"
+    errors="0" failures="0" hostname="" id="" package="Ui_Tests" skipped="0"
+    tests="4" time="8.192" timestamp="Sat, 31 Mar 2018 06:00:29 GMT">
+  
+    <testcase name="I can search for a word" classname="Ui_Tests" time="2.995" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="I can search for word that doesnt exist" classname="Ui_Tests" time="2.066" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="I can search for another word" classname="Ui_Tests" time="1.505" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+    <testcase name="I can search history for my word" classname="Ui_Tests" time="1.626" assertions="2">
+
+    
+
+    
+    </testcase>
+  
+
+  
+
+  
+  </testsuite>
+</testsuites>

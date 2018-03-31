@@ -5,30 +5,30 @@
 
   <testsuite name="test"
     errors="0" failures="0" hostname="" id="" package="test" skipped="0"
-    tests="4" time="6.386" timestamp="Fri, 30 Mar 2018 21:48:19 GMT">
+    tests="4" time="6.265" timestamp="Sat, 31 Mar 2018 06:00:37 GMT">
   
-    <testcase name="I can search for a word" classname="test" time="2.077" assertions="2">
+    <testcase name="I can search for a word" classname="test" time="1.479" assertions="2">
 
     
 
     
     </testcase>
   
-    <testcase name="I can search for word that doesnt exist" classname="test" time="1.420" assertions="2">
+    <testcase name="I can search for word that doesnt exist" classname="test" time="1.552" assertions="2">
 
     
 
     
     </testcase>
   
-    <testcase name="I can search for another word" classname="test" time="1.395" assertions="2">
+    <testcase name="I can search for another word" classname="test" time="1.497" assertions="2">
 
     
 
     
     </testcase>
   
-    <testcase name="I can search history for my word" classname="test" time="1.494" assertions="2">
+    <testcase name="I can search history for my word" classname="test" time="1.737" assertions="2">
 
     
 

@@ -117,16 +117,13 @@
   </div>
 
   <div>
-    <img class="logo" src="vuejs-logo.png" alt="Vue logo">
+    <img class="logo" src="assets/vuejs-logo.png" alt="Vue logo">
   </div>
 
   <div id="app">
-
-
     <div>
       <input type="text" placeholder="Enter a word and hit return" class="textfield" v-model="searchTerm" @keyup.enter="submit"
       />
-
       <div class="resultsBox">
         <h2 v-if="results">{{results}}</h2>
         <h2 v-else>Please enter a word in the search field</h2>
@@ -134,7 +131,6 @@
 
       <div class="pastWords">
         <h1>Past Searched Words</h1>
-
         <ul v-for="item in history">
           <li @click="searchHistory(item)">
             <h2>
@@ -154,7 +150,7 @@
         searchTerm: '',
         results: '',
         wordList: [],
-        history: JSON.parse(localStorage.getItem('historyList') || '[]'),
+        history: JSON.parse(localStorage.getItem('historyList')) || [],
         url: "http://localhost:5000/getWord",
         dataFile: ''
       },
@@ -173,11 +169,14 @@
             return;
           }
           this.history = JSON.parse(localStorage.getItem('historyList') || '[]')
-          // history.push(this.searchTerm)
-          if (this.results) {
+          var getStorage = localStorage.getItem('historyList')
+          console.log("logged data",history, typeof history, "getstorage", getStorage);
+          if (getStorage && getStorage.includes(this.searchTerm)) {
+            return;
+          }
             this.history.push(this.searchTerm)
             localStorage.setItem('historyList', JSON.stringify(this.history))
-          }
+          // }
         },
         searchHistory: function (item) {
           if (this.history.includes(item)) {
