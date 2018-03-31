@@ -1,11 +1,6 @@
 var config = require("../nightwatch.conf.BASIC.js");
 var app_url = "http://localhost:5000/";
-// exports.command = function(message) {
-//   return this.perform(function(browser, done) {
-//     console.log('\033[34m ¡ \033[0m' + message);
-//     done();
-//   });
-// };
+
 module.exports = {
   "I can search for a word": function(browser) {
     browser.url(app_url).setValue("input", "dearth");
@@ -24,8 +19,8 @@ module.exports = {
         "We could not find your word, please try another"
       )
       .elements("css selector", "ul li", result => {
-        const numElements = result.value.length;
-        browser.assert.equal(numElements, 0);
+        const numOfElements = result.value.length;
+        browser.assert.equal(numOfElements, 0);
       })
       .end();
   },

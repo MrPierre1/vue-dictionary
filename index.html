@@ -1,28 +1,11 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <title>Welcome to Vue</title>
-  <!-- <script src="https://unpkg.com/vue"></script> -->
-
-  <script src="node_modules/vue/dist/vue.js">
-
-
-  </script>
-  <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
-
-  <script src="node_modules/axios/dist/axios.min.js">
-
-
-  </script>
-  <script src="node_modules/axios/dist/axios.min.js">
-
-
-  </script>
-  <script src="data/dictionary.json" type="text/javascript">
-
-
-  </script>
+  <title>Welcome to a simple Vue dictionary</title>
+  <script src="node_modules/vue/dist/vue.js"></script>
+  <script src="node_modules/axios/dist/axios.min.js"></script>
+  <script src="node_modules/axios/dist/axios.min.js"></script>
+  <script src="data/dictionary.json" type="text/javascript"></script>
   <style media="screen">
     body {
       background-color: rgb(16, 180, 153);
@@ -81,17 +64,10 @@
     }
 
     .pastWords h1 {
-      color: rgb(32, 112, 32);
-      text-align: center;
+      color: #333;
     }
-
-    .pastWords h2 {
-      /* cursor: pointer; */
-    }
-
     .pastWords li {
       margin: 0 auto;
-      text-align: center;
       list-style: none;
       cursor: pointer;
     }
@@ -155,6 +131,7 @@
         dataFile: ''
       },
       mounted: function () {
+        //When the vue is mounted, get dictionary and add it to localstorage
         axios.get('data/dictionary.json').then(data => {
           localStorage.setItem("words", data.data);
           this.dataFile = data.data
@@ -162,32 +139,28 @@
       },
       methods: {
         submit: function () {
+          //Update search term to uppercase
           this.searchTerm = this.searchTerm.toUpperCase();
+          //find the search word and assign it to result
           this.results = this.dataFile[this.searchTerm]
+          //if word is not found return
           if(!this.results){
             this.results = "We could not find your word, please try another"
             return;
           }
-          this.history = JSON.parse(localStorage.getItem('historyList') || '[]')
-          var getStorage = localStorage.getItem('historyList')
-          console.log("logged data",history, typeof history, "getstorage", getStorage);
-          if (getStorage && getStorage.includes(this.searchTerm)) {
+          //if word is in histiry list, return dont add it to the history list
+          if(this.history.includes(this.searchTerm)){
             return;
           }
-            this.history.push(this.searchTerm)
-            localStorage.setItem('historyList', JSON.stringify(this.history))
-          // }
+          // if new word is not in passed search words add it to the list of search words
+          this.history.push(this.searchTerm)
+          localStorage.setItem('historyList', JSON.stringify(this.history))
         },
         searchHistory: function (item) {
+          //If the word is in the history list then show the definition
           if (this.history.includes(item)) {
-            this.searchTerm = item
             this.results = this.dataFile[item]
-            console.log("correct item", item, "search term", this.searchTerm, "this is result", this.results)
-          } else {
-            console.log("inccorrect item", item, "search term", this.searchTerm, "this is result", this.results)
-
-
-          }
+          } 
         }
       }
     })
