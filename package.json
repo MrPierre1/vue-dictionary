@@ -2,7 +2,7 @@
   "name": "dictionary-app",
   "version": "1.0.0",
   "description": "",
-  "main": ".postcssrc.js",
+  "main": "nodeserver.js",
   "scripts": {
     "test": "./node_modules/.bin/nightwatch --config nightwatch.conf.BASIC"
   },

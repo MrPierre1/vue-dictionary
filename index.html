@@ -19,7 +19,7 @@
 
 
   </script>
-  <script src="dictionary.json" type="text/javascript">
+  <script src="data/dictionary.json" type="text/javascript">
 
 
   </script>
@@ -155,7 +155,7 @@
         dataFile: ''
       },
       mounted: function () {
-        axios.get('./dictionary.json').then(data => {
+        axios.get('data/dictionary.json').then(data => {
           localStorage.setItem("words", data.data);
           this.dataFile = data.data
         })
