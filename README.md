@@ -4,5 +4,5 @@ Simple dictionary using vuejs
 ##Lessons Learned: 
 * I really like vue for its simplicity
 * CSS is not my best friend
-  * I think about styling last and it's bitten in the butt
+  * I think about styling last and it has bitten me in the butt
 * Writing tests in nightwatch was painless and saved me some time
