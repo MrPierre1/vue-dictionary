@@ -21,4 +21,4 @@ Simple dictionary using vuejs
 
 # Todo
 1. Clean up the directories
-2. Make it easier to run tests, add an npm script
+2. Make it easier to run tests, add npm script
