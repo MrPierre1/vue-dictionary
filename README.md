@@ -16,3 +16,9 @@ Simple dictionary using vuejs
 2. node nodeserver.js
 3. Go to localhost:5000 on your browser
 4. To run the tests -  "./node_modules/.bin/nightwatch --config nightwatch.conf.BASIC"
+
+
+
+# Todo
+1. Clean up the directories
+2. Make it easier run these tests, add an npm script
